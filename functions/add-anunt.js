@@ -1,15 +1,27 @@
-exports.handler = (event, context, callback) => {
-  // "event" has information about the path, body, headers, etc. of the request
-  console.log("event", event);
-  // "context" has information about the lambda environment and user details
-  console.log("context", context);
-  // The "callback" ends the execution of the function and returns a response back to the caller
-  return callback(null, {
-    statusCode: 200,
-    body: JSON.stringify({
-      data: "⊂◉‿◉つ"
-    })
-  });
+import faunadb from "faunadb";
+
+const q = faunadb.query;
+const client = new faunadb.Client({
+  secret: process.env.FAUNADB_SERVER_SECRET
+});
+
+exports.handler = async (event, context, callback) => {
+  const data = JSON.parse(event.body);
+  console.log(data);
+  try {
+    const response = await client.query(
+      q.Create(q.Collection("anunturi"), { data })
+    );
+    callback(null, {
+      statusCode: 200,
+      body: JSON.stringify(response)
+    });
+  } catch (error) {
+    callback(null, {
+      statusCode: 400,
+      body: JSON.stringify(error)
+    });
+  }
 };
 
 // fnADmwuIdLACC5TSemvGv-7MFrX2Y1gX4rComPXn
