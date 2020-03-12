@@ -23,5 +23,3 @@ exports.handler = async (event, context, callback) => {
     });
   }
 };
-
-// fnADmwuIdLACC5TSemvGv-7MFrX2Y1gX4rComPXn
