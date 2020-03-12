@@ -19,7 +19,9 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "dev-backend": "netlify-lambda serve functions",
+    "build-backend": "netlify-lambda build functions"
   },
   "repository": {
     "type": "git",
