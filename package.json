@@ -1,0 +1,35 @@
+{
+  "name": "e-materiale",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@rebass/forms": "^4.0.6",
+    "@rebass/preset": "^4.0.5",
+    "@rebass/preset-material": "^4.0.5",
+    "emotion-theming": "^10.0.27",
+    "next": "^9.2.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "rebass": "^4.0.7"
+  },
+  "devDependencies": {
+    "netlify-lambda": "^1.6.3"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dariiiannn/e-materiale.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dariiiannn/e-materiale/issues"
+  },
+  "homepage": "https://github.com/dariiiannn/e-materiale#readme"
+}
