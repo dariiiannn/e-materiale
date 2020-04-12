@@ -1,7 +1,8 @@
-import theme from "@rebass/preset-material";
 import { ThemeProvider } from "emotion-theming";
 import Head from "next/head";
 import { Box } from "rebass";
+
+import theme from "./theme";
 
 export default function Layout({ children }) {
   return (
@@ -14,7 +15,7 @@ export default function Layout({ children }) {
         ></link>
       </Head>
       <ThemeProvider theme={theme}>
-        <Box as="main" fontFamily="body">
+        <Box as="main" fontFamily="body" color="grey800">
           {children}
         </Box>
       </ThemeProvider>
