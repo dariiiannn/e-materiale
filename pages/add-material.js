@@ -1,12 +1,30 @@
 import { Box, Flex, Heading, Button, Card } from "rebass";
-import { Label, Radio, Input, Select, Textarea } from "@rebass/forms";
+import { Label, Input, Select, Textarea } from "@rebass/forms";
+import { useForm } from "react-hook-form";
 
+import { createAnunt } from "../graphql/api";
 import Layout from "../components/layout";
 
 export default function AddMaterial() {
+  const { register, handleSubmit, errors } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
+    createAnunt(data.titlu);
+  };
+
+  const onCancel = () => {
+    console.log("cancel");
+  };
+
   return (
     <Layout>
-      <Box as="form" py={3} maxWidth={600} mx="auto">
+      <Box
+        as="form"
+        py={3}
+        maxWidth={600}
+        mx="auto"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <Heading as="h3" m={4} color="grey700">
           Anunt
         </Heading>
@@ -15,7 +33,7 @@ export default function AddMaterial() {
             <Label htmlFor="Titlu" pb={2} pl={2}>
               Titlu
             </Label>
-            <Input id="titlu" name="titlu" />
+            <Input id="titlu" name="titlu" ref={register({ required: true })} />
           </Box>
 
           <Box py={3}>
@@ -80,10 +98,17 @@ export default function AddMaterial() {
         </Card>
 
         <Flex justifyContent="flex-end" m={4}>
-          <Button width={150} py={3} bg="background" color="base">
+          <Button
+            width={150}
+            py={3}
+            bg="background"
+            color="base"
+            type="button"
+            onClick={onCancel}
+          >
             Anuleaza
           </Button>
-          <Button width={200} py={3} bg="base">
+          <Button type="submit" width={200} py={3} bg="base">
             Adauga
           </Button>
         </Flex>

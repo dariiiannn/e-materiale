@@ -69,8 +69,8 @@ export const useAnunturi = () => {
 | Learn more about GraphQL mutations: https://graphql.org/learn/queries/#mutations
 |--------------------------------------------------
 */
-export const createAnunt = async (twitterHandle, story) => {
-  const query = `mutation CreateAnunt(title: String!) {
+export const createAnunt = async (title) => {
+  const query = `mutation CreateAnunt($title: String!) {
     createAnunt(data: {
       title: $title
     }) {
@@ -89,7 +89,7 @@ export const createAnunt = async (twitterHandle, story) => {
     },
     body: JSON.stringify({
       query,
-      variables: { twitterHandle, story },
+      variables: { title },
     }),
   });
   const data = await res.json();
