@@ -1,0 +1,8 @@
+type Anunt {
+   title: String!
+}
+
+type Query {
+   allAnunts: [Anunt!]
+   anuntsByTitle(title: String!): [Anunt!]
+}
