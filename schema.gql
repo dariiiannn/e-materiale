@@ -1,5 +1,6 @@
 type Anunt {
-   title: String!
+   title: String!,
+   imgUrl: String
 }
 
 type Query {

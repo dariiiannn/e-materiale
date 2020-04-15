@@ -28,7 +28,8 @@ export const useAnunturi = () => {
       data {
         _id
         _ts
-        title
+        title,
+        imgUrl,
       }
       after
     }
