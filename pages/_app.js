@@ -6,7 +6,7 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
   div#__next, html, body {
     margin: 0;
-    height: 100%;
+    min-height: 100%;
     width: 100%;
     font-family: "Roboto", "sans-serif";
     display: flex;
