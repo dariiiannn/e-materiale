@@ -19,14 +19,43 @@ export default function Index() {
   const adList = anunturi.map((listing) => (
     <AnuntPreview key={listing._id} listing={listing} />
   ));
+
+  const categoriiCards = [1, 2, 3, 4, 5].map((_, index) => (
+    <Card
+      key={index}
+      minWidth="100px"
+      height="90px"
+      sx={{
+        borderRadius: "8px",
+        boxShadow: "none",
+        position: "relative",
+      }}
+      mx={3}
+    >
+      <Text
+        as="span"
+        color="white"
+        sx={{
+          position: "absolute",
+          bottom: "-22px",
+          left: "50%",
+          transform: "translate(-50%)",
+        }}
+        fontSize={2}
+        letterSpacing="1px"
+      >
+        Finisaje
+      </Text>
+    </Card>
+  ));
   return (
     <ThemeProvider theme={theme}>
       {/* Lista de anunturi */}
       <Box
         bg="base900"
-        height={12}
-        fontFamily="body"
-        px={7}
+        fontFamily="second"
+        px={8}
+        pb="32px"
         sx={{
           justifyContent: "center",
           alignItems: "center",
@@ -37,31 +66,32 @@ export default function Index() {
       >
         <Heading
           fontWeight={400}
-          fontSize={6}
+          fontSize={7}
           textAlign="center"
           mt={8}
-          mb={3}
-          letterSpacing="1px"
+          mb={4}
+          letterSpacing="0.1em"
         >
-          Ce anume cauti?
+          Cauta sau vinde materiale ramase
         </Heading>
         <Box
-          height={6}
+          height={5}
           bg="grey800"
           sx={{
             borderRadius: "20px",
           }}
           width={10}
           margin="0 auto"
+          mb={7}
         >
           <Text
             as="p"
-            color="grey600"
+            color="grey700"
             width="100%"
             textAlign="center"
-            lineHeight="30px"
+            lineHeight="24px"
             letterSpacing="1px"
-            fontSize={1}
+            fontSize={0}
             fontWeight={300}
           >
             Cluj-Napoca
@@ -70,25 +100,29 @@ export default function Index() {
         <Input
           sx={{
             position: "absolute",
-            bottom: "-18px",
+            bottom: "-14px",
             borderRadius: "6px",
             left: "50%",
             transform: "translate(-50%)",
             border: "none",
+            "::placeholder": {
+              color: "grey400",
+            },
           }}
-          height={8}
+          height={7}
           bg="white"
           width="85%"
           placeholder="Parchet laminat"
           pl={5}
           color="grey"
           letterSpacing="1px"
+          fontFamily="second"
         ></Input>
       </Box>
       <Flex
         bg="base"
         height={11}
-        fontFamily="body"
+        fontFamily="second"
         alignItems="center"
         pl={2}
         overflowX="auto"
@@ -97,52 +131,11 @@ export default function Index() {
             "linear-gradient(98deg, rgba(162,230,250,1) 26%, rgba(82,169,230,1) 100%)",
         }}
       >
-        <Card
-          minWidth="90px"
-          height="80px"
-          sx={{
-            borderRadius: "8px",
-            boxShadow: "none",
-          }}
-          ml={5}
-        ></Card>
-        <Card
-          minWidth="90px"
-          height="80px"
-          sx={{
-            borderRadius: "8px",
-            boxShadow: "none",
-          }}
-          ml={5}
-        ></Card>
-        <Card
-          minWidth="90px"
-          height="80px"
-          sx={{
-            borderRadius: "8px",
-            boxShadow: "none",
-          }}
-          ml={5}
-        ></Card>
-        <Card
-          minWidth="80px"
-          height="80px"
-          sx={{
-            borderRadius: "8px",
-            boxShadow: "none",
-          }}
-          ml={5}
-        ></Card>
+        {categoriiCards}
       </Flex>
       <Flex fontFamily="body" bg="grey200" flexWrap="wrap" minHeight={0}>
         {adList}
       </Flex>
     </ThemeProvider>
   );
-}
-
-{
-  /* <Link href="/add-material" passHref>
-            <RebassLink> adauga anunt</RebassLink>
-          </Link> */
 }

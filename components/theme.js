@@ -36,8 +36,9 @@ export default {
   fonts: {
     body: "'Source Sans Pro', sans-serif",
     heading: "inherit",
+    second: "Roboto, sans-serif",
   },
-  fontSizes: [12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72],
+  fontSizes: [10, 12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72],
   fontWeights: {
     body: 400,
     heading: 700,

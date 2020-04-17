@@ -3,16 +3,7 @@ import { Flex, Heading, Card, Image, Text, Box } from "rebass";
 
 const AnuntPreview = ({ listing }) => {
   return (
-    <Box
-      width={[1 / 2]}
-      pl={3}
-      pt={4}
-      sx={{
-        ":nth-of-type(even)": {
-          paddingRight: 3,
-        },
-      }}
-    >
+    <Box width={["100%"]} px={3} pt={4}>
       <Card
         display="flex"
         p={0}
@@ -42,14 +33,14 @@ const AnuntPreview = ({ listing }) => {
           height={8}
           justifyContent="space-between"
         >
-          <Text fontSize={3} fontWeight={700}>
+          <Text fontSize={5} fontWeight={700}>
             100
-            <Text fontSize={1} fontWeight={400} ml={1} display="inline-block">
+            <Text fontSize={2} fontWeight={400} ml={1} display="inline-block">
               lei
             </Text>
           </Text>
           <Text
-            fontSize={1}
+            fontSize={2}
             fontWeight={400}
             mt={2}
             color="grey"
