@@ -27,10 +27,10 @@ const AnuntPreview = ({ listing }) => {
         )}
         <Flex
           flexDirection="column"
-          px={2}
-          py={2}
+          px={4}
+          py={3}
           color="grey700"
-          height={8}
+          height={9}
           justifyContent="space-between"
         >
           <Text fontSize={5} fontWeight={700}>
@@ -43,7 +43,7 @@ const AnuntPreview = ({ listing }) => {
             fontSize={2}
             fontWeight={400}
             mt={2}
-            color="grey"
+            color="grey800"
             sx={{
               whiteSpace: "nowrap",
               overflow: "hidden",

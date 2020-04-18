@@ -87,7 +87,7 @@ export default {
     768,
   ],
   radii: {
-    default: 16,
+    default: 6,
     circle: 99999,
   },
   shadows: {
