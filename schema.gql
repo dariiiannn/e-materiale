@@ -1,9 +1,14 @@
 type Anunt {
-   title: String!,
-   imgUrl: String
+  title: String!
+  imgUrl: String
+  categorie: String!
+  cantitate: String
+  descriere: String
+  telefon: String
+  email: String
 }
 
 type Query {
-   allAnunts: [Anunt!]
-   anuntsByTitle(title: String!): [Anunt!]
+  allAnunts: [Anunt!]
+  anuntsByTitle(title: String!): [Anunt!]
 }

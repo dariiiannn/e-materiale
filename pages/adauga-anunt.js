@@ -1,14 +1,29 @@
-import { Box, Flex, Heading, Button, Card } from "rebass";
+import { useState } from "react";
+import { Box, Flex, Heading, Button, Link as RebassLink, Image } from "rebass";
 import { Label, Input, Select, Textarea } from "@rebass/forms";
 import { useForm } from "react-hook-form";
+import Link from "next/link";
 
 import { createAnunt } from "../graphql/api";
 import Layout from "../components/layout";
 
 export default function AddMaterial() {
   const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (data) => {
-    createAnunt(data.titlu);
+  const [submitted, setSubmitted] = useState(false);
+  // TODO - use swr or some hook
+  const onSubmit = async (data) => {
+    const anunt = {
+      title: "bla",
+      imgUrl: "",
+      categorie: "bla",
+      cantitate: "bla",
+      descriere: "bla",
+      telefon: "bla",
+      email: "bla",
+    };
+    const result = await createAnunt({ ...anunt, ...data });
+    console.log(result);
+    setSubmitted(true);
   };
 
   const onCancel = () => {
@@ -17,108 +32,146 @@ export default function AddMaterial() {
 
   return (
     <Layout>
-      <Box
-        as="form"
-        py={3}
-        maxWidth={600}
-        mx="auto"
-        onSubmit={handleSubmit(onSubmit)}
-        bg="grey200"
-        px={4}
-      >
-        <Heading as="h3" m={4} color="grey700">
-          Anunt
-        </Heading>
-        <Box py={3}>
-          <Label htmlFor="Titlu" pb={2} pl={2}>
-            Titlu
-          </Label>
-          <Input
-            id="titlu"
-            bg="white"
-            name="titlu"
-            sx={{
-              border: "none",
-              boxShadow: "0 1px 3px hsla(0, 0%, 0%, .2)",
-            }}
-            ref={register({ required: true })}
-          />
-        </Box>
+      {!submitted ? (
+        <Box
+          as="form"
+          py={3}
+          maxWidth={600}
+          mx="auto"
+          onSubmit={handleSubmit(onSubmit)}
+          bg="grey200"
+          px={5}
+        >
+          <Link href="/" passHref>
+            <RebassLink
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                position: "relative",
+                textDecoration: "none",
+              }}
+              fontSize={3}
+              color="grey700"
+              ml={5}
+            >
+              <Image
+                height={4}
+                src="back.svg"
+                sx={{
+                  position: "absolute",
+                  left: -5,
+                }}
+              ></Image>
+              Inapoi
+            </RebassLink>
+          </Link>
+          <Heading fontSize={10} py={8}>
+            Adauga anuntul tau
+          </Heading>
+          <Box py={5}>
+            <Label htmlFor="Titlu">Titlu</Label>
+            <Input
+              id="title"
+              bg="white"
+              name="title"
+              placeholder="Parchet laminat stejar"
+              ref={register({ required: true })}
+            />
+          </Box>
 
-        <Box py={3}>
-          <Label htmlFor="categorie" pb={2} pl={2}>
-            categorie
-          </Label>
-          <Select id="categorie" name="categorie" defaultValue="finisaje">
-            <option value="finisaje">Materiale pentru finisaje</option>
-            <option value="gresie">Gresie/Faianta</option>
-            <option value="adezivi">Adezivi gresie/faianta</option>
-            <option value="chituri">Chit rosturi</option>
-            <option value="distantieri">Distantieri</option>
-          </Select>
-        </Box>
-        <Box py={3}>
-          <Label htmlFor="cantitate" pb={2} pl={2}>
-            Cantitate
-          </Label>
-          <Input id="cantitate" name="cantitate" />
-        </Box>
+          <Box py={5}>
+            <Label htmlFor="categorie">Categorie</Label>
+            <Select
+              id="categorie"
+              name="categorie"
+              defaultValue="finisaje"
+              ref={register({ required: true })}
+            >
+              <option value="finisaje">Materiale pentru finisaje</option>
+              <option value="gresie">Gresie/Faianta</option>
+              <option value="adezivi">Adezivi gresie/faianta</option>
+              <option value="chituri">Chit rosturi</option>
+              <option value="distantieri">Distantieri</option>
+            </Select>
+          </Box>
+          <Box py={5}>
+            <Label htmlFor="cantitate">Cantitate</Label>
+            <Input
+              id="cantitate"
+              name="cantitate"
+              placeholder="6 cutii intregi"
+            />
+          </Box>
 
-        <Box py={3}>
-          <Label htmlFor="specificatii" pb={2} pl={2}>
-            specificatii
-          </Label>
-          <Textarea id="specificatii" name="specificatii" />
+          <Box py={5}>
+            <Label htmlFor="specificatii">Descriere</Label>
+            <Textarea
+              height={10}
+              id="descriere"
+              name="descriere"
+              placeholder="Detalii despre produs, culoare, stare (nou/folosit)"
+            />
+          </Box>
+
+          <Box py={5}>
+            <Label htmlFor="telefon">Telefon</Label>
+            <Input id="telefon" name="Telefon" />
+          </Box>
+
+          <Box py={5}>
+            <Label htmlFor="localitatea">Localitatea</Label>
+            <Input id="localitatea" name="Localitatea" />
+          </Box>
+
+          <Box py={5}>
+            <Label htmlFor="adresa">Adresa</Label>
+            <Input id="adresa" name="Adresa" />
+          </Box>
+
+          <Box py={5}>
+            <Label htmlFor="email">Email</Label>
+            <Input id="email" type="email" name="Email" />
+          </Box>
+
+          <Flex justifyContent="flex-end" my={4}>
+            <Button variant="secondary" type="button" onClick={onCancel}>
+              Anuleaza
+            </Button>
+            <Button type="submit" bg="base">
+              Adauga
+            </Button>
+          </Flex>
         </Box>
-
-        <Heading as="h3" m={4} color="grey700">
-          Contact
-        </Heading>
-
-        <Box py={3}>
-          <Label htmlFor="telefon" pb={2} pl={2}>
-            Telefon
-          </Label>
-          <Input id="telefon" name="Telefon" />
-        </Box>
-
-        <Box py={3}>
-          <Label htmlFor="localitatea" pb={2} pl={2}>
-            Localitatea
-          </Label>
-          <Input id="localitatea" name="Localitatea" />
-        </Box>
-
-        <Box py={3}>
-          <Label htmlFor="adresa" pb={2} pl={2}>
-            Adresa
-          </Label>
-          <Input id="adresa" name="Adresa" />
-        </Box>
-
-        <Box py={3}>
-          <Label htmlFor="email" pb={2} pl={2}>
-            Email
-          </Label>
-          <Input id="email" type="email" name="Email" />
-        </Box>
-
-        <Flex justifyContent="flex-end" m={4}>
-          <Button
-            width={150}
-            py={3}
-            bg="background"
-            color="base"
-            type="button"
-            onClick={onCancel}
-          >
-            Anuleaza
-          </Button>
-          <Button type="submit" width={200} py={3} bg="base">
-            Adauga
-          </Button>
+      ) : (
+        <Flex bg="grey200" height="100vh" flexDirection="column" py={6} px={5}>
+          <Link href="/" passHref>
+            <RebassLink
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                position: "relative",
+                textDecoration: "none",
+              }}
+              fontSize={3}
+              color="grey700"
+              ml={5}
+            >
+              <Image
+                height={4}
+                src="back.svg"
+                sx={{
+                  position: "absolute",
+                  left: -5,
+                }}
+              ></Image>
+              Inapoi
+            </RebassLink>
+          </Link>
+          <Heading fontSize={10} mt={11}>
+            Anuntul tau a fost adaugat!
+          </Heading>
         </Flex>
-      </Box>
+      )}
     </Layout>
   );
 }

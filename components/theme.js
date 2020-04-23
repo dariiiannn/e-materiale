@@ -34,19 +34,19 @@ export default {
     accent: "#1CD9A0",
   },
   fonts: {
-    body: "'Source Sans Pro', sans-serif",
-    heading: "inherit",
-    second: "Roboto, sans-serif",
+    body: "Ubuntu, sans-serif",
+    heading: "'Open Sans', sans-serif",
   },
   fontSizes: [10, 12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72],
   fontWeights: {
     body: 400,
     heading: 700,
     bold: 700,
+    thin: 300,
   },
   lineHeights: {
     body: 1.5,
-    heading: 1.25,
+    heading: 1.1,
   },
   space: [
     0,
@@ -87,13 +87,13 @@ export default {
     768,
   ],
   radii: {
-    default: 6,
+    default: 4,
     circle: 99999,
   },
   shadows: {
     card: "0 0 4px rgba(0, 0, 0, .125)",
   },
-  // rebass variants
+
   text: {
     heading: {
       fontFamily: "heading",
@@ -141,9 +141,10 @@ export default {
     primary: {
       fontSize: 2,
       fontWeight: "bold",
-      color: "background",
+      color: "white",
       bg: "primary",
-      borderRadius: "default",
+      marginX: 3,
+      paddingX: 5,
     },
     outline: {
       variant: "buttons.primary",
@@ -153,8 +154,8 @@ export default {
     },
     secondary: {
       variant: "buttons.primary",
-      color: "background",
-      bg: "secondary",
+      color: "grey800",
+      bg: "transparent",
     },
   },
   styles: {
@@ -163,5 +164,45 @@ export default {
       fontWeight: "body",
       lineHeight: "body",
     },
+  },
+  forms: {
+    input: {
+      color: "grey900",
+      background: "white",
+      border: "3px solid transparent",
+      height: 7,
+      fontFamily: "body",
+      paddingX: 4,
+      boxSizing: "border-box",
+      ":focus": {
+        outline: "none",
+        borderColor: "grey300",
+      },
+    },
+    select: {
+      color: "grey900",
+      background: "white",
+      border: "3px solid transparent",
+      height: 7,
+      fontFamily: "body",
+      paddingX: 4,
+      ":focus": {
+        outline: "none",
+        borderColor: "grey300",
+      },
+    },
+    textarea: {
+      background: "white",
+      border: "none",
+      paddingX: 4,
+    },
+    label: {
+      pb: 3,
+      color: "grey900",
+      fontSize: 2,
+      fontWeight: "thin",
+    },
+    radio: {},
+    checkbox: {},
   },
 };

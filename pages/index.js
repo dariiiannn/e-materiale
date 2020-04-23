@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Box, Flex, Heading, Card, Image, Text } from "rebass";
+import { Box, Flex, Heading, Card, Button, Text, Image } from "rebass";
+import Link from "next/link";
 import { Input } from "@rebass/forms";
 import { ThemeProvider } from "emotion-theming";
 
@@ -20,7 +21,13 @@ export default function Index() {
     <AnuntPreview key={listing._id} listing={listing} />
   ));
 
-  const categoriiCards = [1, 2, 3, 4, 5].map((_, index) => (
+  const categoriiCards = [
+    "Materiale pentru finisaje",
+    "Gresie/Faianta",
+    "Adezivi gresie/faianta",
+    "Chit rosturi",
+    "Distantieri",
+  ].map((name, index) => (
     <Card
       key={index}
       minWidth="100px"
@@ -29,9 +36,13 @@ export default function Index() {
         borderRadius: "8px",
         boxShadow: "none",
         position: "relative",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
       }}
       mx={3}
     >
+      <Image height={7} src="shovel.svg" />
       <Text
         as="span"
         color="white"
@@ -40,11 +51,16 @@ export default function Index() {
           bottom: "-22px",
           left: "50%",
           transform: "translate(-50%)",
+          display: "inline-block",
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          width: "95px",
         }}
         fontSize={2}
         letterSpacing="1px"
       >
-        Finisaje
+        {name}
       </Text>
     </Card>
   ));
@@ -53,7 +69,7 @@ export default function Index() {
       {/* Lista de anunturi */}
       <Box
         bg="base900"
-        fontFamily="second"
+        fontFamily="heading"
         px={8}
         pb="32px"
         sx={{
@@ -66,10 +82,10 @@ export default function Index() {
       >
         <Heading
           fontWeight={400}
-          fontSize={7}
+          fontSize={6}
           textAlign="center"
           mt={8}
-          mb={4}
+          mb={5}
           letterSpacing="0.1em"
         >
           Cauta sau vinde materiale ramase
@@ -116,13 +132,13 @@ export default function Index() {
           pl={5}
           color="grey"
           letterSpacing="1px"
-          fontFamily="second"
+          fontFamily="heading"
         ></Input>
       </Box>
       <Flex
         bg="base"
         height={11}
-        fontFamily="second"
+        fontFamily="heading"
         alignItems="center"
         pl={2}
         overflowX="auto"
@@ -133,9 +149,46 @@ export default function Index() {
       >
         {categoriiCards}
       </Flex>
-      <Flex fontFamily="body" bg="grey200" flexWrap="wrap" minHeight={0}>
+      <Flex
+        fontFamily="body"
+        bg="grey200"
+        flexWrap="wrap"
+        minHeight={0}
+        pb={10}
+      >
         {adList}
       </Flex>
+      <Link href="/adauga-anunt">
+        <Flex
+          bg="white"
+          pl={3}
+          sx={{
+            position: "fixed",
+            bottom: 0,
+            borderRadius: "4px 0 0 4px",
+            width: "100%",
+            height: "60px",
+            bottom: "0",
+            right: "0",
+            justifyContent: "center",
+            alignItems: "center",
+            boxShadow: "0 4px 6px hsla(0, 0%, 0%, .2)",
+          }}
+        >
+          <Image height={4} src="plus.svg"></Image>
+
+          <Button
+            variant="secondary"
+            fontSize={2}
+            fontWeight={1}
+            fontFamily="heading"
+            px={0}
+            color="grey700"
+          >
+            Adauga Anunt
+          </Button>
+        </Flex>
+      </Link>
     </ThemeProvider>
   );
 }

@@ -70,11 +70,10 @@ export const useAnunturi = () => {
 | Learn more about GraphQL mutations: https://graphql.org/learn/queries/#mutations
 |--------------------------------------------------
 */
-export const createAnunt = async (title) => {
-  const query = `mutation CreateAnunt($title: String!) {
-    createAnunt(data: {
-      title: $title
-    }) {
+export const createAnunt = async (anunt) => {
+  const query = `
+  mutation CreateAnunt($anunt: AnuntInput!) {
+    createAnunt(data: $anunt) {
       _id
       _ts
       title
@@ -90,7 +89,7 @@ export const createAnunt = async (title) => {
     },
     body: JSON.stringify({
       query,
-      variables: { title },
+      variables: { anunt },
     }),
   });
   const data = await res.json();
